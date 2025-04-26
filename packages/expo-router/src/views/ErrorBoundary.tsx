@@ -1,7 +1,7 @@
 'use client';
 import type { LogBoxLog } from '@expo/metro-runtime/symbolicate';
 import { BottomTabBarHeightContext } from '@react-navigation/bottom-tabs';
-import { ComponentType, useContext, useEffect, useState } from 'react';
+import { ComponentType, use, useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Platform, ScrollView, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -104,7 +104,7 @@ function StandardErrorView({ error }: { error: Error }) {
 
 export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
   const logBoxLog = useMetroSymbolication(error);
-  const inTabBar = useContext(BottomTabBarHeightContext);
+  const inTabBar = use(BottomTabBarHeightContext);
   const Wrapper = inTabBar ? View : SafeAreaView;
 
   const isServerError = error instanceof ReactServerError;
